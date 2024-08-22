@@ -15,6 +15,8 @@ public class Consulta {
         this.dataEhora = dataEhora;
         this.diagnostico = diagnostico;
     }
+    
+    public Consulta(){}
 
     public int getIdConsulta() {
         return idConsulta;

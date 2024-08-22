@@ -18,6 +18,8 @@ public class Prescricao {
         this.recomendacoes = recomendacoes;
     }
 
+    public Prescricao(){}
+    
     public int getIdPrescricao() {
         return idPrescricao;
     }

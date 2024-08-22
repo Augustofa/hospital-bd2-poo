@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MedicoDAO {
-
-    // a conexão com o banco de dados
+       // a conexão com o banco de dados
     private Connection connection;
 
     public MedicoDAO() {
@@ -128,5 +127,4 @@ public class MedicoDAO {
             throw new RuntimeException(e);
         }
     }
-
 }

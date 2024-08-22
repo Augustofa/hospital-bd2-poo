@@ -23,6 +23,8 @@ public class Prontuario {
         this.cirPrevia = cirPrevia;
     }
 
+    public Prontuario(){}
+    
     public int getIdProntuario() {
         return idProntuario;
     }

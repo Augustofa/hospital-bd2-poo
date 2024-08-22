@@ -5,11 +5,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionFactory {
+    
     public Connection getConnection() {
         try {
-            return DriverManager.getConnection("jdbc:mysql://localhost/hospital", "root", "#Nathalia3101");
+            return DriverManager.getConnection("jdbc:mysql://localhost/hospital", "root", "");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+    
 }
