@@ -1,4 +1,4 @@
-package com.iftm.gerenciadorhospital;
+package Entidades;
 
 public class Paciente extends Pessoa {
     private int idPaciente;

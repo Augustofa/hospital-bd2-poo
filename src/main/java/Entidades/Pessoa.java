@@ -1,4 +1,4 @@
-package com.iftm.gerenciadorhospital;
+package Entidades;
 
 public abstract class Pessoa {
     private String nome;

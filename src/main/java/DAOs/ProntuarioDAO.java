@@ -1,6 +1,7 @@
 
-package com.iftm.gerenciadorhospital;
+package DAOs;
 
+import Entidades.Prontuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

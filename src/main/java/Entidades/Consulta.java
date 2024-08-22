@@ -1,5 +1,5 @@
 
-package com.iftm.gerenciadorhospital;
+package Entidades;
 
 public class Consulta {
     private int idConsulta;

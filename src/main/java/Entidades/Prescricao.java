@@ -1,5 +1,7 @@
 
-package com.iftm.gerenciadorhospital;
+package Entidades;
+
+import Entidades.Consulta;
 
 public class Prescricao {
     private int idPrescricao;

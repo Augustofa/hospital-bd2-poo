@@ -1,4 +1,4 @@
-package com.iftm.gerenciadorhospital;
+package Entidades;
 
 public class Prontuario {
     private int idProntuario;

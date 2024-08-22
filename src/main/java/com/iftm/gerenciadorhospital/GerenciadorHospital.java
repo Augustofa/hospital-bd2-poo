@@ -1,5 +1,12 @@
 package com.iftm.gerenciadorhospital;
 
+import Entidades.Paciente;
+import Entidades.Medico;
+import Entidades.Consulta;
+import DAOs.PacienteDAO;
+import DAOs.MedicoDAO;
+import DAOs.ConsultaDAO;
+
 public class GerenciadorHospital {
 
     public static void main(String[] args) {
