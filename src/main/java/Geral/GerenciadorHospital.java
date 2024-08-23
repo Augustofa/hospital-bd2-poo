@@ -1,4 +1,4 @@
-package com.iftm.gerenciadorhospital;
+package Geral;
 
 import Entidades.Paciente;
 import Entidades.Medico;
