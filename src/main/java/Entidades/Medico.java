@@ -1,5 +1,9 @@
 package Entidades;
 
+import DAOs.MedicoDAO;
+import java.util.List;
+import java.util.Scanner;
+
 public class Medico extends Pessoa {
     private int idMedico;
     private String crm;
@@ -37,5 +41,30 @@ public class Medico extends Pessoa {
         this.especialidades = especialidades;
     }
     
-    
+    //Funções para realizar buscas
+    public static Medico buscarMedico(MedicoDAO m1Dao, Scanner scan) {
+        boolean ver = false;
+        Medico medicoEncontrado = new Medico();
+        while (ver == false) {
+            System.out.println("Médicos cadastrados:");
+            m1Dao.listar();
+            System.out.println("Digite o ID do médico:");
+            int id = scan.nextInt();
+            scan.nextLine();
+
+            List<Medico> medicos = m1Dao.getLista();
+
+            for (Medico m : medicos) {
+                if (m.getIdMedico() == id) {
+                    medicoEncontrado = m;
+                    ver = true;
+                    break;
+                }
+            }
+            if (ver == false) {
+                System.out.println("Escolha um ID válido.");
+            }
+        }
+        return medicoEncontrado;
+    }
 }

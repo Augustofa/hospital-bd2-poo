@@ -1,7 +1,10 @@
 
 package Entidades;
 
+import DAOs.PrescricaoDAO;
 import Entidades.Consulta;
+import java.util.List;
+import java.util.Scanner;
 
 public class Prescricao {
     private int idPrescricao;
@@ -71,5 +74,31 @@ public class Prescricao {
         this.recomendacoes = recomendacoes;
     }
     
-    
+    public static Prescricao buscarPrescricao(PrescricaoDAO presc1Dao, Scanner scan) {
+        boolean ver = false;
+        Prescricao prescricaoEncontrada = new Prescricao();
+        
+        while(ver == false){
+            System.out.println("Prescrições cadastradas:");
+            presc1Dao.listar();
+            System.out.println("Digite o ID da prescrição:");
+            int id = scan.nextInt();
+            scan.nextLine();
+
+            List<Prescricao> prescricoes = presc1Dao.getLista();
+
+
+            for (Prescricao p : prescricoes) {
+                if (p.getIdPrescricao() == id) {
+                    prescricaoEncontrada = p;
+                    ver = true;
+                    break;
+                }
+            }
+            if (ver == false) {
+                System.out.println("Escolha um ID válido.");
+            }
+        }    
+        return prescricaoEncontrada;
+    }
 }

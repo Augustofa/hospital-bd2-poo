@@ -1,5 +1,9 @@
 package Entidades;
 
+import DAOs.ConsultaDAO;
+import java.util.List;
+import java.util.Scanner;
+
 public class Consulta {
     private int idConsulta;
     private Paciente paciente;
@@ -58,6 +62,31 @@ public class Consulta {
         this.diagnostico = diagnostico;
     }
     
-    
-    
+    public static Consulta buscarConsulta(ConsultaDAO c1Dao, Scanner scan) { 
+        boolean ver = false;
+        Consulta consultaEncontrada = new Consulta();
+       
+        while(ver == false){
+            System.out.println("Consultas cadastradas:");
+            c1Dao.listar();
+            System.out.println("Digite o ID da consulta:");
+            int id = scan.nextInt();
+            scan.nextLine();
+
+            List<Consulta> consultas = c1Dao.getLista();
+
+
+            for (Consulta c : consultas) {
+                if (c.getIdConsulta() == id) {
+                    consultaEncontrada = c;
+                    ver = true;
+                    break;
+                }
+            }
+            if (ver == false) {
+                System.out.println("Escolha um ID válido.");
+            }
+        }            
+        return consultaEncontrada;
+    }
 }

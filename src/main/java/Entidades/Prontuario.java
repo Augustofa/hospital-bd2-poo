@@ -1,5 +1,9 @@
 package Entidades;
 
+import DAOs.ProntuarioDAO;
+import java.util.List;
+import java.util.Scanner;
+
 public class Prontuario {
     private int idProntuario;
     private Paciente paciente;
@@ -97,5 +101,30 @@ public class Prontuario {
     public void setCirPrevia(String cirPrevia) {
         this.cirPrevia = cirPrevia;
     }
+       
+    
+    public static Prontuario buscarProntuario(ProntuarioDAO pront1Dao, Scanner scan) {
+        boolean ver = false;
+        Prontuario prontuarioEncontrado = new Prontuario();
         
+        while(ver == false){
+            System.out.println("Prontuarios cadastrados:");
+            pront1Dao.listar();
+            System.out.println("Digite o ID do prontuario:");
+            int id = scan.nextInt();
+            scan.nextLine();
+
+            List<Prontuario> prontuarios = pront1Dao.getLista();
+
+
+            for (Prontuario p : prontuarios) {
+                if (p.getIdProntuario() == id) {
+                    prontuarioEncontrado = p;
+                    ver = true;
+                    break;
+                }
+            }
+        }
+        return prontuarioEncontrado;
+    }
 }

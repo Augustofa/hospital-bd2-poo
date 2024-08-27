@@ -1,5 +1,10 @@
 package Entidades;
 
+import DAOs.MedicoDAO;
+import DAOs.PacienteDAO;
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Pessoa {
     private String nome;
     private String cpf;
@@ -77,4 +82,28 @@ public abstract class Pessoa {
         System.out.println("");
     }
     
+    public static List<Pessoa> getListaPessoas(){
+        List<Pessoa> pessoas = new ArrayList<Pessoa>();
+        
+        MedicoDAO mDao = new MedicoDAO();
+        List<Medico> medicos = mDao.getLista();
+        for(Medico m : medicos){
+            pessoas.add(m);
+        }
+        
+        PacienteDAO pDao = new PacienteDAO();
+        List<Paciente> pacientes = pDao.getLista();
+        for(Paciente p : pacientes){
+            pessoas.add(p);
+        }
+                
+        return pessoas;
+    }
+    
+    public static void imprimePessoas(){
+        List<Pessoa> pessoas = getListaPessoas();
+        for(Pessoa p : pessoas){
+            p.imprimirDados();
+        }
+    }
 }
