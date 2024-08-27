@@ -1,6 +1,7 @@
 package DAOs;
 
 import Entidades.Medico;
+import Geral.Utils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,7 +30,7 @@ public class MedicoDAO {
             stmt.setString(1, medico.getNome());
             stmt.setString(2, medico.getCpf());
             stmt.setString(3, medico.getEndereco());
-            stmt.setString(4, medico.getDataNascimento());
+            stmt.setString(4, Utils.converteStringToSqlDate(medico.getDataNascimento()));
             stmt.setString(5, medico.getEmail());
             stmt.setString(6, medico.getTelefone());
             stmt.setString(7, medico.getCrm());
