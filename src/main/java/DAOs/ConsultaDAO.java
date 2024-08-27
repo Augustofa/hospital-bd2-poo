@@ -106,7 +106,7 @@ public class ConsultaDAO {
             stmt.setInt(2, consulta.getMedico().getIdMedico());
             stmt.setString(3, consulta.getDataEhora());
             stmt.setString(4, consulta.getDiagnostico());
-            stmt.setInt(7, consulta.getIdConsulta());
+            stmt.setInt(5, consulta.getIdConsulta());
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
@@ -117,7 +117,7 @@ public class ConsultaDAO {
     public void remover(Consulta consulta) {
         try {
             PreparedStatement stmt = connection
-                    .prepareStatement("delete from consulta where id=?");
+                    .prepareStatement("delete from consulta where id_consulta=?");
             stmt.setInt(1, consulta.getIdConsulta());
             stmt.execute();
             stmt.close();

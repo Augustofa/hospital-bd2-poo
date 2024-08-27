@@ -67,6 +67,14 @@ public abstract class Pessoa {
         this.telefone = telefone;
     }
     
-    
+    public void imprimirDados(){
+        System.out.println("Nome: " + this.nome);
+        System.out.println("CPF: " + this.cpf);
+        System.out.println("Endereço: " + this.endereco);
+        System.out.println("Data de nascimento: " + this.dataNascimento);
+        System.out.println("Email: " + this.email);
+        System.out.println("Telefone: " + this.telefone);
+        System.out.println("");
+    }
     
 }

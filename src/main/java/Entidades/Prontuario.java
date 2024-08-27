@@ -12,7 +12,6 @@ public class Prontuario {
     private String cirPrevia;
 
     public Prontuario(Paciente paciente, String tipoSanguineo, char sexo, String profissao, String alergias, String doencas, String medContinuo, String cirPrevia) {
-        this.idProntuario = idProntuario;
         this.paciente = paciente;
         this.tipoSanguineo = tipoSanguineo;
         this.sexo = sexo;
@@ -23,7 +22,9 @@ public class Prontuario {
         this.cirPrevia = cirPrevia;
     }
 
-    public Prontuario(){}
+    public Prontuario(){
+        this.paciente = new Paciente();
+    }
     
     public int getIdProntuario() {
         return idProntuario;

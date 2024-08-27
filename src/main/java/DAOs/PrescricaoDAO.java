@@ -20,7 +20,7 @@ public class PrescricaoDAO {
 
     public void adicionar(Prescricao prescricao) {
         String sql = "insert into prescricao "
-                + "(id_consulta, data_validade, categora, medicamentos, recomendacoes)"
+                + "(id_consulta, data_validade, categoria, medicamentos, recomendacoes)"
                 + " values (?,?,?,?,?)";
 
         try {

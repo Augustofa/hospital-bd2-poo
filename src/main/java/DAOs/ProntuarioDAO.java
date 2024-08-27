@@ -1,6 +1,7 @@
 
 package DAOs;
 
+import Entidades.Paciente;
 import Entidades.Prontuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -56,11 +57,15 @@ public class ProntuarioDAO {
                     prepareStatement("select * from prontuario");
             ResultSet rs = stmt.executeQuery();
 
+            PacienteDAO pDao = new PacienteDAO();
             while (rs.next()) {
                 // criando o objeto Prontuário
                 Prontuario prontuario = new Prontuario();
                 prontuario.setIdProntuario(rs.getInt("id_prontuario"));
-                prontuario.getPaciente().setIdPaciente(rs.getInt("id_paciente"));
+                int idPaciente = rs.getInt("id_paciente");
+                
+                Paciente paciente = pDao.buscar(idPaciente);
+                prontuario.setPaciente(paciente);
                 prontuario.setTipoSanguineo(rs.getString("tipo_sanguineo"));
                 prontuario.setSexo(rs.getString("sexo").charAt(0));
                 prontuario.setProfissao(rs.getString("profissao"));
@@ -85,7 +90,7 @@ public class ProntuarioDAO {
         List<Prontuario> prontuarios = this.getLista();
         for (Prontuario p : prontuarios) {
             System.out.println("Id do Prontuário: " + p.getIdProntuario());
-            System.out.println("Id do Paciente: " + p.getPaciente().getIdPaciente());
+            System.out.println("Paciente: " + p.getPaciente().getNome());
             System.out.println("Tipo Sanguíneo: " + p.getTipoSanguineo());
             System.out.println("Sexo: " + p.getSexo());
             System.out.println("Profissão: " + p.getProfissao());

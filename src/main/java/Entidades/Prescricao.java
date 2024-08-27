@@ -12,7 +12,6 @@ public class Prescricao {
     private String recomendacoes;
 
     public Prescricao(Consulta consulta, String dataDeValidade, int categoria, String medicamentos, String recomendacoes) {
-        this.idPrescricao = idPrescricao;
         this.consulta = consulta;
         this.dataDeValidade = dataDeValidade;
         this.categoria = categoria;
@@ -20,7 +19,9 @@ public class Prescricao {
         this.recomendacoes = recomendacoes;
     }
 
-    public Prescricao(){}
+    public Prescricao(){
+        this.consulta = new Consulta();
+    }
     
     public int getIdPrescricao() {
         return idPrescricao;
