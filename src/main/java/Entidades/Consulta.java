@@ -1,4 +1,3 @@
-
 package Entidades;
 
 public class Consulta {
@@ -8,15 +7,16 @@ public class Consulta {
     private String dataEhora;
     private String diagnostico;
 
-    public Consulta(int idConsulta, Paciente paciente, Medico medico, String dataEhora, String diagnostico) {
-        this.idConsulta = idConsulta;
+    public Consulta(Paciente paciente, Medico medico, String dataEhora) {
         this.paciente = paciente;
         this.medico = medico;
         this.dataEhora = dataEhora;
-        this.diagnostico = diagnostico;
     }
     
-    public Consulta(){}
+    public Consulta(){
+        this.paciente = new Paciente();
+        this.medico = new Medico();
+    }
 
     public int getIdConsulta() {
         return idConsulta;

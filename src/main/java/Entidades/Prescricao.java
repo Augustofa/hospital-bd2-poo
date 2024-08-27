@@ -11,7 +11,7 @@ public class Prescricao {
     private String medicamentos;
     private String recomendacoes;
 
-    public Prescricao(int idPrescricao, Consulta consulta, String dataDeValidade, int categoria, String medicamentos, String recomendacoes) {
+    public Prescricao(Consulta consulta, String dataDeValidade, int categoria, String medicamentos, String recomendacoes) {
         this.idPrescricao = idPrescricao;
         this.consulta = consulta;
         this.dataDeValidade = dataDeValidade;

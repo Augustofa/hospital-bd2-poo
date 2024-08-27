@@ -79,6 +79,36 @@ public class MedicoDAO {
         }
     }
     
+    public Medico buscar(int idMedico) {
+        try {
+            PreparedStatement stmt = this.connection.
+                    prepareStatement("select * from medico where id_medico = ?");
+            stmt.setInt(1, idMedico);
+            ResultSet rs = stmt.executeQuery();
+            
+            Medico medico = new Medico();
+
+            while (rs.next()) {
+                // criando o objeto Medico
+                 
+                medico.setIdMedico(rs.getInt("id_medico"));
+                medico.setNome(rs.getString("nome"));
+                medico.setCpf(rs.getString("cpf"));
+                medico.setEndereco(rs.getString("endereco"));
+                medico.setDataNascimento(rs.getString("data_nasc"));
+                medico.setEmail(rs.getString("email"));
+                medico.setTelefone(rs.getString("telefone"));
+                medico.setCrm(rs.getString("crm"));
+                medico.setEspecialidades(rs.getString("especialidades"));
+            }
+            rs.close();
+            stmt.close();
+            return medico;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
     public void listar() {
         System.out.println("------------ Listagem ------------");
         List<Medico> medicos = this.getLista();

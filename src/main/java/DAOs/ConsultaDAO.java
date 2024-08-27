@@ -2,7 +2,8 @@
 package DAOs;
 
 import Entidades.Consulta;
-import Entidades.Consulta;
+import Entidades.Medico;
+import Entidades.Paciente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -52,13 +53,24 @@ public class ConsultaDAO {
             PreparedStatement stmt = this.connection.
                     prepareStatement("select * from consulta");
             ResultSet rs = stmt.executeQuery();
+            
+            PacienteDAO pDao = new PacienteDAO();
+            MedicoDAO mDao = new MedicoDAO();
+          
 
             while (rs.next()) {
                 // criando o objeto Consulta
                 Consulta consulta = new Consulta();
                 consulta.setIdConsulta(rs.getInt("id_consulta"));
-                consulta.getPaciente().setIdPaciente(rs.getInt("id_paciente"));
-                consulta.getMedico().setIdMedico(rs.getInt("id_medico"));
+                
+                int idPaciente = rs.getInt("id_paciente");
+                Paciente paciente = pDao.buscar(idPaciente);
+                consulta.setPaciente(paciente);
+                
+                int idMedico = rs.getInt("id_medico");
+                Medico medico = mDao.buscar(idMedico);
+                consulta.setMedico(medico);
+                
                 consulta.setDataEhora(rs.getString("data_e_hora"));
                 consulta.setDiagnostico(rs.getString("diagnostico"));
 
@@ -78,8 +90,8 @@ public class ConsultaDAO {
         List<Consulta> consultas = this.getLista();
         for (Consulta c : consultas) {
             System.out.println("Id da Consulta: " + c.getIdConsulta());
-            System.out.println("Paciente: " + c.getPaciente().getIdPaciente());
-            System.out.println("Medico: " + c.getMedico().getIdMedico());
+            System.out.println("Paciente: " + c.getPaciente().getNome());
+            System.out.println("Médico: " + c.getMedico().getNome());
             System.out.println("Data e hora: " + c.getDataEhora());
             System.out.println("Diagnostico: " + c.getDiagnostico());
             System.out.println("----------------------------------");
@@ -94,6 +106,7 @@ public class ConsultaDAO {
             stmt.setInt(2, consulta.getMedico().getIdMedico());
             stmt.setString(3, consulta.getDataEhora());
             stmt.setString(4, consulta.getDiagnostico());
+            stmt.setInt(7, consulta.getIdConsulta());
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {

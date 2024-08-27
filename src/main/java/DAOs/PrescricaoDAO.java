@@ -97,6 +97,7 @@ public class PrescricaoDAO {
             stmt.setInt(3, prescricao.getCategoria());
             stmt.setString(4, prescricao.getMedicamentos());
             stmt.setString(5, prescricao.getRecomendacoes());
+            stmt.setInt(6, prescricao.getIdPrescricao());
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {

@@ -3,7 +3,7 @@ package Entidades;
 public class Paciente extends Pessoa {
     private int idPaciente;
 
-    public Paciente(String nome, String cpf, String endereco, String dataNascimento, String email, String telefone, int idPaciente) {
+    public Paciente(String nome, String cpf, String endereco, String dataNascimento, String email, String telefone) {
         super(nome, cpf, endereco, dataNascimento, email, telefone);
         this.idPaciente = idPaciente;
     }

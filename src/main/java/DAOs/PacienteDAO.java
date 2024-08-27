@@ -76,6 +76,34 @@ public class PacienteDAO {
         }
     }
     
+    public Paciente buscar(int idPaciente) {
+        try {
+            PreparedStatement stmt = this.connection.
+                    prepareStatement("select * from paciente where id_paciente = ?");
+            stmt.setInt(1, idPaciente);
+            ResultSet rs = stmt.executeQuery();
+            
+            Paciente paciente = new Paciente();
+
+            while (rs.next()) {
+                // criando o objeto Paciente
+                
+                paciente.setIdPaciente(rs.getInt("id_paciente"));
+                paciente.setNome(rs.getString("nome"));
+                paciente.setCpf(rs.getString("cpf"));
+                paciente.setEndereco(rs.getString("endereco"));
+                paciente.setDataNascimento(rs.getString("data_nasc"));
+                paciente.setEmail(rs.getString("email"));
+                paciente.setTelefone(rs.getString("telefone"));
+            }
+            rs.close();
+            stmt.close();
+            return paciente;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
     public void listar() {
         System.out.println("------------ Listagem ------------");
         List<Paciente> pacientes = this.getLista();
@@ -92,7 +120,7 @@ public class PacienteDAO {
     }
 
     public void alterar(Paciente paciente) {
-        String sql = "update paciente set nome=?, cpf=?, endereco=?, data_nasc=?, email=?, telefone=? where id=?";
+        String sql = "update paciente set nome=?, cpf=?, endereco=?, data_nasc=?, email=?, telefone=? where id_paciente=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, paciente.getNome());
@@ -101,6 +129,7 @@ public class PacienteDAO {
             stmt.setString(4, paciente.getDataNascimento());
             stmt.setString(5, paciente.getEmail());
             stmt.setString(6, paciente.getTelefone());
+            stmt.setInt(7, paciente.getIdPaciente());
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
@@ -111,7 +140,7 @@ public class PacienteDAO {
     public void remover(Paciente paciente) {
         try {
             PreparedStatement stmt = connection
-                    .prepareStatement("delete from paciente where id=?");
+                    .prepareStatement("delete from paciente where id_paciente=?");
             stmt.setLong(1, paciente.getIdPaciente());
             stmt.execute();
             stmt.close();

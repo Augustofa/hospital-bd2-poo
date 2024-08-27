@@ -11,7 +11,7 @@ public class Prontuario {
     private String medContinuo;
     private String cirPrevia;
 
-    public Prontuario(int idProntuario, Paciente paciente, String tipoSanguineo, char sexo, String profissao, String alergias, String doencas, String medContinuo, String cirPrevia) {
+    public Prontuario(Paciente paciente, String tipoSanguineo, char sexo, String profissao, String alergias, String doencas, String medContinuo, String cirPrevia) {
         this.idProntuario = idProntuario;
         this.paciente = paciente;
         this.tipoSanguineo = tipoSanguineo;
