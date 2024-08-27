@@ -1,6 +1,7 @@
 package DAOs;
 
 import Entidades.Prescricao;
+import Geral.Utils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,7 +30,7 @@ public class PrescricaoDAO {
 
             // seta os valores
             stmt.setInt(1, prescricao.getConsulta().getIdConsulta());
-            stmt.setString(2, prescricao.getDataDeValidade());
+            stmt.setString(2, Utils.converteStringToSqlDate(prescricao.getDataDeValidade()));
             stmt.setInt(3, prescricao.getCategoria());
             stmt.setString(4, prescricao.getMedicamentos());
             stmt.setString(5, prescricao.getRecomendacoes());
@@ -58,7 +59,7 @@ public class PrescricaoDAO {
                 Prescricao prescricao = new Prescricao();
                 prescricao.setIdPrescricao(rs.getInt("id_prescricao"));
                 prescricao.getConsulta().setIdConsulta(rs.getInt("id_consulta"));
-                prescricao.setDataDeValidade(rs.getString("data_validade"));
+                prescricao.setDataDeValidade(Utils.converteSqlDateToString(rs.getString("data_validade")));
                 prescricao.setCategoria(rs.getInt("categoria"));
                 prescricao.setMedicamentos(rs.getString("medicamentos"));
                 prescricao.setRecomendacoes(rs.getString("recomendacoes"));

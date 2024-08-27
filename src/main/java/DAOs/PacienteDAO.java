@@ -2,6 +2,7 @@
 package DAOs;
 
 import Entidades.Paciente;
+import Geral.Utils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,7 +32,7 @@ public class PacienteDAO {
             stmt.setString(1, paciente.getNome());
             stmt.setString(2, paciente.getCpf());
             stmt.setString(3, paciente.getEndereco());
-            stmt.setString(4, paciente.getDataNascimento());
+            stmt.setString(4, Utils.converteStringToSqlDate(paciente.getDataNascimento()));
             stmt.setString(5, paciente.getEmail());
             stmt.setString(6, paciente.getTelefone());
 
@@ -61,7 +62,7 @@ public class PacienteDAO {
                 paciente.setNome(rs.getString("nome"));
                 paciente.setCpf(rs.getString("cpf"));
                 paciente.setEndereco(rs.getString("endereco"));
-                paciente.setDataNascimento(rs.getString("data_nasc"));
+                paciente.setDataNascimento(Utils.converteSqlDateToString(rs.getString("data_nasc")));
                 paciente.setEmail(rs.getString("email"));
                 paciente.setTelefone(rs.getString("telefone"));
 

@@ -63,7 +63,7 @@ public class MedicoDAO {
                 medico.setNome(rs.getString("nome"));
                 medico.setCpf(rs.getString("cpf"));
                 medico.setEndereco(rs.getString("endereco"));
-                medico.setDataNascimento(rs.getString("data_nasc"));
+                medico.setDataNascimento(Utils.converteSqlDateToString(rs.getString("data_nasc")));
                 medico.setEmail(rs.getString("email"));
                 medico.setTelefone(rs.getString("telefone"));
                 medico.setCrm(rs.getString("crm"));
